@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import React ,{useState} from 'react';
+import { Routes, Route } from "react-router-dom";
+import Login from './components/Login';
+import Layout from './pages/LayoutPage';
+import TodoMain from './components/TodoMain';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [userToken , setUserToken] = useState ("1");
+
+  if(userToken === ""){
+    return (
+      <div className="app"> 
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Login />} />
+        </Route>
+      </Routes>
+      </div>
+    );
+  }else {
+    return (
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<TodoMain setUserToken={setUserToken}/>} />
+          </Route>
+        </Routes>
+      </div>
+    );
+  }
 }
 
 export default App;
