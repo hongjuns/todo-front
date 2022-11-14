@@ -1,15 +1,15 @@
 import './App.css';
-import React ,{useState} from 'react';
+import React from 'react';
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Login from './components/Login';
 import Layout from './pages/LayoutPage';
 import TodoMain from './components/TodoMain';
 
 function App() {
+  const isLogined = useSelector(state => state.auth.isLogined);
 
-  const [userToken , setUserToken] = useState ("1");
-
-  if(userToken === ""){
+  if(!isLogined){
     return (
       <div className="app"> 
       <Routes>
@@ -24,7 +24,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<TodoMain setUserToken={setUserToken}/>} />
+            <Route index element={<TodoMain />} />
           </Route>
         </Routes>
       </div>
