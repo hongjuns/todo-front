@@ -65,10 +65,26 @@ export default function TodoMain() {
     });
   }
 
+  const handleCompletedChange = (id) => {
+
+      let checkTodoObjectData = item.map((data) => {
+          if (data.id === id){
+            data.done = !data.done
+          }
+          return data;
+      })
+      setItem(checkTodoObjectData);
+  }
+
   return (
     <Container maxWidth="md">
         <AddTodo handleSave={handleSave} title={title} setTitle={setTitle}/>
-        <Todo items={item} handleRemove={handleRemove} handleEdit={handleEdit} handleEditCall={handleEditCall}/>
+        <Todo items={item} 
+              handleRemove={handleRemove} 
+              handleEdit={handleEdit} 
+              handleEditCall={handleEditCall}
+              handleCompletedChange = {handleCompletedChange}
+          />
     </Container>
   )
 }

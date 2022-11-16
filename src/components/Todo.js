@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 import { DeleteOutlined } from '@material-ui/icons'
 
-export default function Todo({items, handleRemove, handleEdit, handleEditCall}) {
+export default function Todo({items, handleRemove, handleEdit, handleEditCall,handleCompletedChange}) {
   const [readOnly, setReadOnly ] = useState(true);
   
   const handleClickReadOnly = () => {
@@ -32,8 +32,13 @@ export default function Todo({items, handleRemove, handleEdit, handleEditCall}) 
         <Paper style={{margin : 16}}>
             <List>
                 {items.map((item, index) => (
-                    <ListItem key={item.id}>
-                        <Checkbox checked={item.done} />
+                    <ListItem key={item.id} 
+                        style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>
+                        <Checkbox 
+                            checked={item.done} 
+                            onChange={() => handleCompletedChange(item.id)}
+                            
+                        />
                         <ListItemText>
                             <InputBase
                                 inputProps={{
