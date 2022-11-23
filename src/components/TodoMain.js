@@ -3,7 +3,7 @@ import Todo from './Todo';
 import AddTodo from './AddTodo';
 import { Container } from "@material-ui/core";
 import { call } from './/ApiServer';
-
+import { DragDropContext} from "react-beautiful-dnd";
 export default function TodoMain() {
 
  const [item, setItem] = useState([]);
@@ -66,25 +66,47 @@ export default function TodoMain() {
   }
 
   const handleCompletedChange = (id) => {
-
       let checkTodoObjectData = item.map((data) => {
           if (data.id === id){
             data.done = !data.done
           }
+          call("/todo/update", "PUT", data).then((response)=>{});
           return data;
       })
       setItem(checkTodoObjectData);
   }
 
+  const handleEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+    setItem(reorder(item, result.source.index,result.destination.index));
+  }
+    
+  const reorder = (list, startIndex, endIndex) => {
+    const result = list;
+    const [removed] = result.splice(startIndex, 1);
+    let changePosition = {
+      id : removed.id,
+      position : endIndex
+    }
+    call("/todo/position", "PUT", changePosition).then((response)=>{
+      result.splice(endIndex, 0, removed);
+      return result;
+    });
+  };
+  
   return (
     <Container maxWidth="md">
         <AddTodo handleSave={handleSave} title={title} setTitle={setTitle}/>
-        <Todo items={item} 
-              handleRemove={handleRemove} 
-              handleEdit={handleEdit} 
-              handleEditCall={handleEditCall}
-              handleCompletedChange = {handleCompletedChange}
-          />
+        <DragDropContext onDragEnd={handleEnd}>
+          <Todo items={item} 
+                handleRemove={handleRemove} 
+                handleEdit={handleEdit} 
+                handleEditCall={handleEditCall}
+                handleCompletedChange = {handleCompletedChange}
+            />
+        </DragDropContext>
     </Container>
   )
 }

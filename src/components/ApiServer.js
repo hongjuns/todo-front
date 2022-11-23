@@ -32,11 +32,12 @@ export function call(api, method, request) {
       })
     )
     .catch((error) => {
-      // 추가된 부분
+      // 추가된 
       console.log(error.status);
       if (error.status === 403) {
         window.location.href = "/login"; // redirect
       }else{
+        //error.message
         alert(error.error);
       }
       return Promise.reject(error);

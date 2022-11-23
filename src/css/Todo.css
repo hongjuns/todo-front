@@ -1,0 +1,3 @@
+.MuiListItem-root line-through MuiListItem-gutters MuiListItem-secondaryAction {
+    text-decoration: line-through;
+}
