@@ -10,9 +10,11 @@
 <img width="800" alt="스크린샷 2022-11-30 오후 3 13 27" src="https://user-images.githubusercontent.com/39370772/204721866-86ef7669-836d-41ee-ab93-ed6fa0aa21b6.png">  
 </p>
 <p align="center"> Main </p>
-## 실행방법 
 
-```sh
+
+## 코드 실행
+
+```
 $ cd <프로젝트 디렉터리>
 $ npm install
 $ npm start
