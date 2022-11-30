@@ -2,16 +2,22 @@ import React,{useEffect ,useState}  from 'react'
 import Todo from './Todo';
 import AddTodo from './AddTodo';
 import { Container } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import { call } from './/ApiServer';
 import { DragDropContext} from "react-beautiful-dnd";
+import { delUserToken } from '../reducer/authSlice'; 
 export default function TodoMain() {
 
  const [item, setItem] = useState([]);
  const [title, setTitle ] = useState("");
 
-
+ const dispatch = useDispatch();
  useEffect(()=>{
     //초기값 세팅
+    const accessToken = localStorage.getItem("ACCESS_TOKEN");
+    if (accessToken === null) {
+      dispatch(delUserToken());
+    }
     call("/todo/select","GET",null).then((response) =>{
       setItem(response.data);
     })
@@ -90,10 +96,9 @@ export default function TodoMain() {
       id : removed.id,
       position : endIndex
     }
-    call("/todo/position", "PUT", changePosition).then((response)=>{
-      result.splice(endIndex, 0, removed);
-      return result;
-    });
+    call("/todo/position", "PUT", changePosition).then((response)=>{});
+    result.splice(endIndex, 0, removed);
+    return result;
   };
   
   return (

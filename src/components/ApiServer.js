@@ -32,11 +32,14 @@ export function call(api, method, request) {
       })
     )
     .catch((error) => {
-      // 추가된 
-      console.log(error.status);
       if (error.status === 403) {
         window.location.href = "/login"; // redirect
-      }else{
+      }else if (error.status === 401){
+        alert(error.message);
+        localStorage.removeItem('ACCESS_TOKEN');
+        window.location.href = "/"; 
+      }
+      else{
         //error.message
         alert(error.error);
       }

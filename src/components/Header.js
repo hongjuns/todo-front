@@ -10,14 +10,18 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { delUserToken } from '../reducer/authSlice'; 
 export default function Header() {
   const isLogined = useSelector(state => state.auth.isLogined);
-  const selectorState = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogOut = () => {
     dispatch(delUserToken());
     navigate("/");
   }
-
+  const handleSingUp = () => {
+    navigate("/signUp");
+  }
+  const handleMain = () => {
+    navigate("/");
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -27,14 +31,14 @@ export default function Header() {
             edge="start"
             color="inherit"
             aria-label="menu"
+            onClick={handleMain} 
             sx={{ mr: 2 }}
           >
           </AdbIcon>
-          <Typography variant="h6" align="left" component="div" sx={{ flexGrow: 1 }}>
-           {isLogined ? selectorState.user.id + " TodoList" : "TodoList"}
+          <Typography variant="h6" align="left" component="div" sx={{ flexGrow: 1 }} onClick={handleMain} >
+           TodoList
           </Typography>
-          {isLogined ? <Button color="inherit"   onClick={ handleLogOut} >LogOut</Button> : <Button color="inherit">Login</Button>}
-          
+           {isLogined ? <Button color="inherit"  onClick={handleLogOut} >LogOut</Button> : <Button color="inherit" onClick={handleSingUp}>Sing Up</Button>}
         </Toolbar>
       </AppBar>
     </Box>

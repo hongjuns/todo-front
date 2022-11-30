@@ -3,6 +3,7 @@ import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import Layout from './pages/LayoutPage';
 import TodoMain from './components/TodoMain';
 
@@ -15,6 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Login />} />
+          <Route path="/signUp" element={<SignUp/>} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
       </div>
