@@ -2,7 +2,7 @@
 > React Hook을 이용한 Todo List Front
 
 
-<img width="400" alt="스크린샷 2022-11-30 오후 3 11 33" src="https://user-images.githubusercontent.com/39370772/204721694-fa7ae22b-6924-4618-939e-1313afbf9399.png">  (Login)  <img width="440" alt="스크린샷 2022-11-30 오후 3 13 27" src="https://user-images.githubusercontent.com/39370772/204721866-86ef7669-836d-41ee-ab93-ed6fa0aa21b6.png">  (Main)
+<img width="300" alt="스크린샷 2022-11-30 오후 3 11 33" src="https://user-images.githubusercontent.com/39370772/204721694-fa7ae22b-6924-4618-939e-1313afbf9399.png">  (Login)  <img width="340" alt="스크린샷 2022-11-30 오후 3 13 27" src="https://user-images.githubusercontent.com/39370772/204721866-86ef7669-836d-41ee-ab93-ed6fa0aa21b6.png">  (Main)
 
 ## 실행방법 
 
